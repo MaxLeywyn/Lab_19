@@ -16,7 +16,7 @@ void writeArrayInMatrix(char *fileName, matrix *ms, int nMatrices);
 
 void writeNewNumInFile(char *readFileName,char *writeFileName);
 
-void calculateArithmeticExpression(char *fileName, double *result);
+void writeAnswerOfArithmeticExpressionToEnd(char *fileName);
 
 
 #endif //LAB_19_FILE_H
