@@ -1,15 +1,11 @@
 # ninja log v5
 47	592	7369554371837455	CMakeFiles/Lab_19.dir/matrix/matrix.c.obj	f101bfe55f6b2f10
 48	539	7365132624191830	CMakeFiles/Lab_19.dir/time_test_lib/time_test.c.obj	83648e98d0d0011
-3	1651	7372045512779006	CMakeFiles/Lab_19.dir/main.c.obj	bed221f38b336b3e
-0	228	7371170260899945	build.ninja	cf96f4eb46d9f211
+2	1613	7372048032278374	CMakeFiles/Lab_19.dir/main.c.obj	bed221f38b336b3e
+0	228	7372094747183184	build.ninja	cf96f4eb46d9f211
 3	1169	7369560967641905	CMakeFiles/Lab_19.dir/file/matrix.c.obj	afd5c3aa8135c13d
-3	647	7372047077481059	CMakeFiles/Lab_19.dir/file/file.c.obj	4e6270eea9e48ff
-647	884	7372047079794892	Lab_19.exe	54209c93fdca47ec
+3	580	7372048612337541	CMakeFiles/Lab_19.dir/file/file.c.obj	4e6270eea9e48ff
+581	784	7372048614332537	Lab_19.exe	54209c93fdca47ec
 53	637	7370593016523757	CMakeFiles/Lab_19.dir/file/string_.c.obj	7f079869c4135488
 51	776	7370618755028158	CMakeFiles/Lab_19.dir/file/string_processing.c.obj	47599c567bfba494
 58	680	7372045503035056	CMakeFiles/Lab_19.dir/file/polynom.c.obj	93ddaaa1c8d43206
-2	1613	7372048032278374	CMakeFiles/Lab_19.dir/main.c.obj	bed221f38b336b3e
-1614	1817	7372048034263060	Lab_19.exe	54209c93fdca47ec
-3	580	7372048612337541	CMakeFiles/Lab_19.dir/file/file.c.obj	4e6270eea9e48ff
-581	784	7372048614332537	Lab_19.exe	54209c93fdca47ec

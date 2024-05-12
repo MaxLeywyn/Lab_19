@@ -263,15 +263,14 @@ void leftPolynomsWhitNoXRoot(char *fileName, int *powers, double *coefficients,
     savePolyResult(fileName, ps, polQuantity);
 }
 
-void wNumsToBinFile(char *fileName, int numsArray[], size_t sizeArray){
+void wNumsToBinFile(char *fileName, int *numsArr, size_t size){
     FILE *file = openFile(fileName, "wb");
-
-    fwrite(numsArray, sizeof(int), sizeArray, file);
+    fwrite(numsArr, sizeof(int), size, file);
     fclose(file);
 }
 
 
-void rFilterAndWriteNumsFromBinFile(char *fileName,
+void rFilterAndWriteNumsToBinFile(char *fileName,
                                     vector *positive,
                                     vector *negative){
     FILE *file = openFile(fileName, "rb");
@@ -297,6 +296,12 @@ void rFilterAndWriteNumsFromBinFile(char *fileName,
     shrinkToFit(negative);
 }
 
+void writePosFirstNegSec(char *fileName, int *numsArr, size_t size,
+                 vector *positive, vector *negative){
+    wNumsToBinFile(fileName, numsArr, size);
+
+    rFilterAndWriteNumsToBinFile(fileName, positive, negative);
+}
 
 
 

@@ -10,6 +10,8 @@
 #include "string_processing.h"
 #include "polynom.h"
 #include "math.h"
+#include "vector.h"
+
 
 FILE* openFile(char *fileName, char *action);
 
@@ -28,5 +30,9 @@ void leftOnlyLongestWord(char *rFileName, char *wFileName);
 //6
 void leftPolynomsWithNoXRoot(char *rFileName, char *wFileName, double x);
 //7
+void writePosFirstNegSec(char *fileName, int *numsArr, size_t size,
+                         vector *positive, vector *negative);
+
+
 
 #endif //LAB_19_FILE_H

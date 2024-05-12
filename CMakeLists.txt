@@ -13,5 +13,7 @@ add_executable(Lab_19 main.c
         file/string_processing.h
         file/string_processing.c
         file/polynom.h
-        file/polynom.c)
+        file/polynom.c
+        file/vector.h
+        file/vector.c)
 
