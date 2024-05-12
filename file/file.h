@@ -15,8 +15,6 @@
 
 FILE* openFile(char *fileName, char *action);
 
-matrix *readMatrixFromFile(char *fileName, int *rCountMatrices);
-
 //1
 void writeArrayInMatrix(char *fileName, matrix *ms, int nMatrices);
 //2
@@ -32,6 +30,10 @@ void leftPolynomsWithNoXRoot(char *rFileName, char *wFileName, double x);
 //7
 void writePosFirstNegSec(char *fileName, int *numsArr, size_t size,
                          vector *positive, vector *negative);
+//8
+void changeNotSymmetricMatrixByTransposed(char *fileName, matrix *ms, int nMatrices);
+//9
+
 
 
 

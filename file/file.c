@@ -25,10 +25,10 @@ matrix *readMatrixFromFile(char *fileName, int *matrixCounter) {
                                    dimensionMatrices,
                                    dimensionMatrices);
 
-        for (int matrix_i = 0; matrix_i < nMatrices; matrix_i++) {
-            for (int row_i = 0; row_i < dimensionMatrices; row_i++) {
-                for (int col_i = 0; col_i < dimensionMatrices; col_i++) {
-                    fscanf(file, "%d", &ms[matrix_i].values[row_i][col_i]);
+        for (int i_matrix = 0; i_matrix < nMatrices; i_matrix++) {
+            for (int i = 0; i < dimensionMatrices; i++) {
+                for (int j = 0; j < dimensionMatrices; j++) {
+                    fscanf(file, "%d", &ms[i_matrix].values[i][j]);
                 }
             }
         }
@@ -48,10 +48,10 @@ void writeArrayInMatrix(char *fileName, matrix *ms, int nMatrices) {
     if (nMatrices > 0) {
         fprintf(file, "%d\n", ms->nRows);
 
-        for (int indMatrix = 0; indMatrix < nMatrices; indMatrix++) {
-            for (int indRow = 0; indRow < ms->nRows; indRow++) {
-                for (int indCol = 0; indCol < ms->nCols; indCol++) {
-                    fprintf(file, "%d ", ms[indMatrix].values[indRow][indCol]);
+        for (int i_matrix = 0; i_matrix < nMatrices; i_matrix++) {
+            for (int i = 0; i < ms->nRows; i++) {
+                for (int j = 0; j < ms->nCols; j++) {
+                    fprintf(file, "%d ", ms[i_matrix].values[i][j]);
                 }
                 fprintf(file, "\n");
             }
@@ -184,13 +184,13 @@ void readWordsFromFile(char *fileName, BagOfWords *bag) {
     fclose(file);
 }
 
-bool wordIncludesSequence(WordDescriptor word, char* sequence,
-                          size_t size){
+bool wordIncludesSequence(WordDescriptor word, char *sequence,
+                          size_t size) {
     size_t i_sequence = 0;
-    while (word.begin != word.end && i_sequence < size){
-        if (*word.begin == sequence[i_sequence]){
+    while (word.begin != word.end && i_sequence < size) {
+        if (*word.begin == sequence[i_sequence]) {
             i_sequence++;
-        } else{
+        } else {
             i_sequence = 0;
         }
         word.begin++;
@@ -204,9 +204,9 @@ void leftOnlyInclusionWords(char *word, char *rFileName, char *wFileName) {
     size_t sizeOfWord = strlen(word);
     FILE *file = openFile(wFileName, "a");
     for (int i = 0; i < bag.size; i++) {
-        if(wordIncludesSequence(bag.words[i],word, strlen(word))){
+        if (wordIncludesSequence(bag.words[i], word, strlen(word))) {
             char a[20];
-            wordDescriptorToString(bag.words[i],a);
+            wordDescriptorToString(bag.words[i], a);
             fprintf(file, "%s", a);
             fprintf(file, " ");
         }
@@ -253,7 +253,7 @@ void leftOnlyLongestWord(char *rFileName, char *wFileName) {
 
 
 void leftPolynomsWhitNoXRoot(char *fileName, int *powers, double *coefficients,
-                             int *monQuantity, int polQuantity, int x, int *result){
+                             int *monQuantity, int polQuantity, int x, int *result) {
     writePolyToFile(fileName, powers, coefficients, monQuantity, polQuantity);
 
     Polynom *ps = readPolyFromFile(fileName);
@@ -263,7 +263,7 @@ void leftPolynomsWhitNoXRoot(char *fileName, int *powers, double *coefficients,
     savePolyResult(fileName, ps, polQuantity);
 }
 
-void wNumsToBinFile(char *fileName, int *numsArr, size_t size){
+void wNumsToBinFile(char *fileName, int *numsArr, size_t size) {
     FILE *file = openFile(fileName, "wb");
     fwrite(numsArr, sizeof(int), size, file);
     fclose(file);
@@ -271,18 +271,18 @@ void wNumsToBinFile(char *fileName, int *numsArr, size_t size){
 
 
 void rFilterAndWriteNumsToBinFile(char *fileName,
-                                    vector *positive,
-                                    vector *negative){
+                                  vector *positive,
+                                  vector *negative) {
     FILE *file = openFile(fileName, "rb");
 
     size_t indPositive = 0;
     size_t indNegative = 0;
 
     int num;
-    while (fread(&num, sizeof(int), 1, file) == 1){
-        if (num > 0){
+    while (fread(&num, sizeof(int), 1, file) == 1) {
+        if (num > 0) {
             pushBack(positive, num);
-        } else{
+        } else {
             pushBack(negative, num);
         }
     }
@@ -297,12 +297,68 @@ void rFilterAndWriteNumsToBinFile(char *fileName,
 }
 
 void writePosFirstNegSec(char *fileName, int *numsArr, size_t size,
-                 vector *positive, vector *negative){
+                         vector *positive, vector *negative) {
     wNumsToBinFile(fileName, numsArr, size);
 
     rFilterAndWriteNumsToBinFile(fileName, positive, negative);
 }
 
 
+matrix *readMatrixFromBinFile(char *fileName) {
+    FILE *file = openFile(fileName, "rb");
+    int nMatrices;
+    fread(&nMatrices, sizeof(int), 1, file);
+    matrix *ms;
+
+    if (nMatrices > 0) {
+        int dimensionMatrices;
+        fread(&dimensionMatrices, sizeof(int), 1, file);
+        ms = getMemArrayOfMatrices(nMatrices,
+                                   dimensionMatrices,
+                                   dimensionMatrices);
+
+        for (int i_matrix = 0; i_matrix < nMatrices; i_matrix++) {
+            for (int j = 0; j < ms[i_matrix].nRows; j++) {
+                fread(ms[i_matrix].values[j], sizeof(int),
+                      ms[i_matrix].nCols, file);
+            }
+        }
+    }
+
+    fclose(file);
+    return ms;
+}
+
+void wMatrixToBinFile(char *fileName, matrix *ms, int nMatrices) {
+    FILE *file = openFile(fileName, "wb");
+
+    fwrite(&nMatrices, sizeof(int), 1, file);
+    if (nMatrices > 0) {
+        fwrite(&ms[0].nRows, sizeof(int), 1, file);
+
+        for (int i_matrix = 0; i_matrix < nMatrices; i_matrix++) {
+            for (int j = 0; j < ms[i_matrix].nRows; j++) {
+                fwrite(ms[i_matrix].values[j], sizeof(int),
+                       ms[i_matrix].nCols, file);
+            }
+        }
+    }
+
+    fclose(file);
+}
+
+
+void changeNotSymmetricMatrixByTransposed(char *fileName, matrix *ms, int nMatrices) {
+    wMatrixToBinFile(fileName, ms, nMatrices);
+
+    matrix *msRes = readMatrixFromBinFile(fileName);
+    for (size_t matrixInd = 0; matrixInd < nMatrices; matrixInd++) {
+        if (!isSymmetricMatrix(&msRes[matrixInd])) {
+            transposeSquareMatrix(&msRes[matrixInd]);
+        }
+    }
+
+    wMatrixToBinFile(fileName, msRes, nMatrices);
+}
 
 
