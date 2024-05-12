@@ -362,23 +362,58 @@ void changeNotSymmetricMatrixByTransposed(char *fileName, matrix *ms, int nMatri
 }
 
 
-void formTeamOfBestSportsmans(char *fileName, sportsman *sportsmanArr, int countAthletes,
+void formTeamOfBestSportsmans(char *fileName, sportsman *sportsmanArr, int sportsmansQuantity,
                int sportsmanNeed, sportsman *readSportsmanArr,
                sportsman **rightSportsmans) {
 
-    if (countAthletes < sportsmanNeed) {
+    if (sportsmansQuantity < sportsmanNeed) {
         printf("Число требуемых атлетов не покрыть имеющимся количеством");
         exit(1);
     }
 
-    writeSportsmansToBinFile(fileName, sportsmanArr, countAthletes);
+    writeSportsmansToBinFile(fileName, sportsmanArr, sportsmansQuantity);
 
-    int rCountAthletes;
-    readSportsmanArr = readSportsmansFromBinFile(fileName, &rCountAthletes);
-    quickSortSportsmans(readSportsmanArr, 0, rCountAthletes - 1);
+    int readSportsmanQuantity;
+    readSportsmanArr = readSportsmansFromBinFile(fileName, &readSportsmanQuantity);
+    quickSortSportsmans(readSportsmanArr, 0, readSportsmanQuantity - 1);
 
-    int countSkipAthletes = rCountAthletes - sportsmanNeed;
-    *rightSportsmans = readSportsmanArr + countSkipAthletes;
+    int otherSportsmanQuantity = readSportsmanQuantity - sportsmanNeed;
+    *rightSportsmans = readSportsmanArr + otherSportsmanQuantity;
 
     writeSportsmansToBinFile(fileName, *rightSportsmans, sportsmanNeed);
+}
+
+
+void saveOnlyAvailableProductsByOrders(char *fileNameProducts, char *fileNameOrders,
+               product *productsArr, size_t productsQuantity,
+               order *ordersArr, size_t ordersQuantity,
+               product **readProductsIndicatorArr){
+    writeProductsToBinFile(fileNameProducts, productsArr, productsQuantity);
+    writeOrdersToBinFile(fileNameOrders, ordersArr, ordersQuantity);
+
+    size_t readProductsQuantity;
+    size_t notAvailableProductsQuantity = 0;
+    product *readProductsArr = readProductsFromBinFile(fileNameProducts,
+                                                   &readProductsQuantity);
+
+    size_t readOrdersQuantity;
+    order *readOrdersArr = readOrdersFromBinFile(fileNameOrders, &readOrdersQuantity);
+
+    for (int i = 0; i < readOrdersQuantity; i++){
+        size_t j = searchProductIndexInArray(
+                readOrdersArr[i].name, readProductsArr,
+                readProductsQuantity);
+
+        readProductsArr[j].quantity -= readOrdersArr[i].quantity;
+        readProductsArr[j].fullPrice -= readOrdersArr[i].quantity *
+                                               readProductsArr[j].unitPrice;
+
+        if (readProductsArr[j].quantity == 0){
+            notAvailableProductsQuantity++;
+        }
+    }
+
+    *readProductsIndicatorArr = readProductsArr;
+    writeAvailableProductsInBinFile(fileNameProducts, readProductsArr, productsQuantity,
+                              notAvailableProductsQuantity);
 }

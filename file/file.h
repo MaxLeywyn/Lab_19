@@ -12,6 +12,7 @@
 #include "math.h"
 #include "vector.h"
 #include "sportsmens.h"
+#include "product.h"
 
 
 FILE* openFile(char *fileName, char *action);
@@ -38,7 +39,10 @@ void formTeamOfBestSportsmans(char *fileName, sportsman *sportsmanArr, int count
                               int sportsmanNeed, sportsman *readSportsmanArr,
                               sportsman **rightSportsmans);
 //10
-
+void saveOnlyAvailableProductsByOrders(char *fileNameProducts, char *fileNameOrders,
+                                       product *productsArr, size_t productsQuantity,
+                                       order *ordersArr, size_t ordersQuantity,
+                                       product **readProductsIndicatorArr);
 
 
 

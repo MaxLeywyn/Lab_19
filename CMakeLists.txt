@@ -19,5 +19,7 @@ add_executable(Lab_19 main.c
         file/sportsmens.h
         file/sportsmens.c
         file/product.h
-        file/product.c)
+        file/product.c
+        file_tests/file_tests.h
+        file_tests/file_tests.c)
 
