@@ -8,7 +8,9 @@ int main() {
 
     SetConsoleOutputCP(CP_UTF8);
 
-    writeAnswerOfArithmeticExpressionToEnd("F:\\Git\\Lab_19\\cmake-build-debug\\data\\f_3.1.txt");
+    leftOnlyInclusionWords("ea","F:\\Git\\Lab_19\\cmake-build-debug\\data\\f_4.1.txt",
+                            "F:\\Git\\Lab_19\\cmake-build-debug\\data\\f_4.2.txt");
 
     return 0;
 }
+

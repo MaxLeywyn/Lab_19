@@ -3,12 +3,10 @@
 
 FILE *openFile(char *fileName, char *action) {
     FILE *file = fopen(fileName, action);
-
     if (file == NULL) {
         printf("Ошибка при открытии файла\n");
         exit(1);
     }
-
     return file;
 }
 
@@ -162,12 +160,64 @@ void calculateArithmeticExpression(char *fileName, double *result) {
 }
 
 void writeAnswerOfArithmeticExpressionToEnd(char *fileName) {
-
     double res;
-
     calculateArithmeticExpression(fileName, &res);
     FILE *f = openFile(fileName, "a");
     fprintf(f, "%lf", res);
     fclose(f);
 }
+
+
+char full_string[200];
+
+void readWordsFromFile(char *fileName, BagOfWords *bag) {
+    FILE *file = openFile(fileName, "r");
+    char a[20];
+    size_t j = 0;
+    while (fscanf(file, "%s", a) == 1) {
+        copy(a, (a + strlen(a)), full_string + j);
+        j += strlen(a);
+        *(full_string + j) = ' ';
+        j++;
+    }
+    getBagOfWords(bag, full_string);
+    fclose(file);
+}
+
+bool wordIncludesSequence(WordDescriptor word, char* sequence,
+                          size_t size){
+    size_t i_sequence = 0;
+    while (word.begin != word.end && i_sequence < size){
+        if (*word.begin == sequence[i_sequence]){
+            i_sequence++;
+        } else{
+            i_sequence = 0;
+        }
+        word.begin++;
+    }
+    return i_sequence == size;
+}
+
+void leftOnlyInclusionWords(char *word, char *rFileName, char *wFileName) {
+    BagOfWords bag;
+    readWordsFromFile(rFileName, &bag);
+    size_t sizeOfWord = strlen(word);
+    FILE *file = openFile(wFileName, "a");
+    for (int i = 0; i < bag.size; i++) {
+        if(wordIncludesSequence(bag.words[i],word, strlen(word))){
+            char a[20];
+            wordDescriptorToString(bag.words[i],a);
+            fprintf(file, "%s", a);
+            fprintf(file, " ");
+        }
+    }
+    fclose(file);
+}
+
+
+
+
+
+
+
 

@@ -7,5 +7,11 @@ add_executable(Lab_19 main.c
         file/file.h
         file/file.c
         file/matrix.h
-        file/matrix.c)
+        file/matrix.c
+        file/string_.h
+        file/string_.c
+        file/string_processing.h
+        file/string_processing.c
+        file/polynom.h
+        file/polynom.c)
 
