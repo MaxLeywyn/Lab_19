@@ -214,7 +214,42 @@ void leftOnlyInclusionWords(char *word, char *rFileName, char *wFileName) {
     fclose(file);
 }
 
+void getLongestWordsInLineFromFile(char *fileName, char *result) {
+    FILE *file = openFile(fileName, "r");
 
+    char *beginResult = result;
+    char line[200];
+    while (fgets(line, 200, file) != NULL) {
+        char *begin = line;
+
+        WordDescriptor lookingWord;
+        size_t sizeLookingWord = 0;
+        WordDescriptor word;
+        while (getWord(begin, &word)) {
+            size_t sizeWord = word.end - word.begin;
+            if (sizeWord > sizeLookingWord) {
+                sizeLookingWord = sizeWord;
+                lookingWord = word;
+            }
+            begin = word.end;
+        }
+        if (sizeLookingWord > 0) {
+            beginResult = copy(lookingWord.begin, lookingWord.end, beginResult);
+            *beginResult = '\n';
+            beginResult++;
+        }
+    }
+    fclose(file);
+}
+
+
+void leftOnlyLongestWord(char *rFileName, char *wFileName) {
+    char longestWord[200];
+    getLongestWordsInLineFromFile(rFileName, longestWord);
+    FILE *file = openFile(wFileName, "w");
+    fprintf(file, "%s", longestWord);
+    fclose(file);
+}
 
 
 
