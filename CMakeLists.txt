@@ -16,8 +16,8 @@ add_executable(Lab_19 main.c
         file/polynom.c
         file/vector.h
         file/vector.c
-        file/sportsmens.h
-        file/sportsmens.c
+        file/sportsman.h
+        file/sportsman.c
         file/product.h
         file/product.c
         file_tests/file_tests.h

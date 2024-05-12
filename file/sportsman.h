@@ -1,5 +1,5 @@
-#ifndef LAB_19_SPORTSMENS_H
-#define LAB_19_SPORTSMENS_H
+#ifndef LAB_19_SPORTSMAN_H
+#define LAB_19_SPORTSMAN_H
 
 #include "file.h"
 
@@ -15,4 +15,4 @@ void quickSortSportsmans(sportsman *sportsmanArr, const int start, const int end
 
 sportsman* readSportsmansFromBinFile(char *fileName, int *sportsmanQuantity);
 
-#endif //LAB_19_SPORTSMENS_H
+#endif //LAB_19_SPORTSMAN_H

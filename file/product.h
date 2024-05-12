@@ -1,6 +1,7 @@
 #ifndef LAB_19_PRODUCT_H
 #define LAB_19_PRODUCT_H
 
+#include <stdio.h>
 #include "file.h"
 
 typedef struct product{

@@ -11,16 +11,21 @@
 #include "polynom.h"
 #include "math.h"
 #include "vector.h"
-#include "sportsmens.h"
+#include "sportsman.h"
 #include "product.h"
+
 
 
 FILE* openFile(char *fileName, char *action);
 
 //1
 void writeArrayInMatrix(char *fileName, matrix *ms, int nMatrices);
+
+matrix *readMatrixFromFile(char *fileName, int *matrixCounter);
 //2
-void writeNewNumInFile(char *readFileName,char *writeFileName);
+void writeNumsInFile(char *fileName, double *a, size_t size);
+
+        void readNumsFromFile(char *fileName, double *a, size_t *size);
 //3
 void writeAnswerOfArithmeticExpressionToEnd(char *fileName);
 //4
@@ -28,16 +33,19 @@ void leftOnlyInclusionWords(char *word, char *rFileName, char *wFileName);
 //5
 void leftOnlyLongestWord(char *rFileName, char *wFileName);
 //6
-void leftPolynomsWithNoXRoot(char *rFileName, char *wFileName, double x);
+void leftPolynomsWhitNoXRoot(char *fileName, int *powers, double *coefficients,
+                             int *monQuantity, int polQuantity, int x, int *result);
 //7
 void writePosFirstNegSec(char *fileName, int *numsArr, size_t size,
                          vector *positive, vector *negative);
 //8
 void changeNotSymmetricMatrixByTransposed(char *fileName, matrix *ms, int nMatrices);
+
+matrix *readMatrixFromBinFile(char *fileName);
 //9
-void formTeamOfBestSportsmans(char *fileName, sportsman *sportsmanArr, int countAthletes,
+void formTeamOfBestSportsmans(char *fileName, sportsman *sportsmanArr, int sportsmanQuantity,
                               int sportsmanNeed, sportsman *readSportsmanArr,
-                              sportsman **rightSportsmans);
+                              sportsman **rightSportsman);
 //10
 void saveOnlyAvailableProductsByOrders(char *fileNameProducts, char *fileNameOrders,
                                        product *productsArr, size_t productsQuantity,

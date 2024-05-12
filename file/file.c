@@ -362,29 +362,29 @@ void changeNotSymmetricMatrixByTransposed(char *fileName, matrix *ms, int nMatri
 }
 
 
-void formTeamOfBestSportsmans(char *fileName, sportsman *sportsmanArr, int sportsmansQuantity,
+void formTeamOfBestSportsmans(char *fileName, sportsman *sportsmanArr, int sportsmanQuantity,
                int sportsmanNeed, sportsman *readSportsmanArr,
-               sportsman **rightSportsmans) {
+               sportsman **rightSportsman) {
 
-    if (sportsmansQuantity < sportsmanNeed) {
+    if (sportsmanQuantity < sportsmanNeed) {
         printf("Число требуемых атлетов не покрыть имеющимся количеством");
         exit(1);
     }
 
-    writeSportsmansToBinFile(fileName, sportsmanArr, sportsmansQuantity);
+    writeSportsmansToBinFile(fileName, sportsmanArr, sportsmanQuantity);
 
     int readSportsmanQuantity;
     readSportsmanArr = readSportsmansFromBinFile(fileName, &readSportsmanQuantity);
     quickSortSportsmans(readSportsmanArr, 0, readSportsmanQuantity - 1);
 
     int otherSportsmanQuantity = readSportsmanQuantity - sportsmanNeed;
-    *rightSportsmans = readSportsmanArr + otherSportsmanQuantity;
+    *rightSportsman = readSportsmanArr + otherSportsmanQuantity;
 
-    writeSportsmansToBinFile(fileName, *rightSportsmans, sportsmanNeed);
+    writeSportsmansToBinFile(fileName, *rightSportsman, sportsmanNeed);
 }
 
 
-void saveOnlyAvailableProductsByOrders(char *fileNameProducts, char *fileNameOrders,
+void saveOnlyAvailableProduct(char *fileNameProducts, char *fileNameOrders,
                product *productsArr, size_t productsQuantity,
                order *ordersArr, size_t ordersQuantity,
                product **readProductsIndicatorArr){
