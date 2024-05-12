@@ -132,33 +132,39 @@ void task3_test() {
 
 void task4_test() {
     char *fileName = "F:\\Git\\Lab_19\\cmake-build-debug\\data\\f_4.1.txt";
+    char fileName2[50] = "F:\\Git\\Lab_19\\cmake-build-debug\\data\\f_4.2.txt";
+
     char s[200] = "valkyria chronicles persona yakuza burnout";
     char word[1] = "o";
     FILE *f1 = openFile(fileName, "w");
     fwrite(s, sizeof(char) * 42, 1, f1);
     fclose(f1);
-    char fileName2[50] = "F:\\Git\\Lab_19\\cmake-build-debug\\data\\f_4.2.txt";
+
     leftOnlyInclusionWords(word, fileName, fileName2);
     FILE *f2 = openFile(fileName, "r");
     char got[27];
     fread(got, sizeof(char) * 26, 1, f2);
     fclose(f2);
+
     char expected[27] = "chronicles persona burnout";
     assert(strcmp(got, expected) == 0);
 }
 
 void task5_test() {
     char *fileName = "F:\\Git\\Lab_19\\cmake-build-debug\\data\\f_5.1.txt";
+    char fileName2[50] = "F:\\Git\\Lab_19\\cmake-build-debug\\data\\f_5.2.txt";
+
     char s[200] = "valkyria chronicles persona yakuza burnout";
     FILE *f1 = openFile(fileName, "w");
     fwrite(s, sizeof(char) * 42, 1, f1);
     fclose(f1);
-    char fileName2[50] = "F:\\Git\\Lab_19\\cmake-build-debug\\data\\f_5.2.txt";
+
     leftOnlyLongestWord(fileName, fileName2);
     FILE *f2 = openFile(fileName, "r");
     char got[10];
     fread(got, sizeof(char) * 10, 1, f2);
     fclose(f2);
+
     char expected[10] = "chronicles";
     assert(strcmp(got, expected) == 0);
 }
@@ -286,6 +292,7 @@ void task9_test() {
         assert(rightSportsmans[i].bestResult == expected[i]);
     }
 }
+
 
 void task10_test() {
     char *fileNameProducts = "F:\\Git\\Lab_19\\cmake-build-debug\\data\\f_10.1.txt";
