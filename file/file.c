@@ -362,3 +362,23 @@ void changeNotSymmetricMatrixByTransposed(char *fileName, matrix *ms, int nMatri
 }
 
 
+void formTeamOfBestSportsmans(char *fileName, sportsman *sportsmanArr, int countAthletes,
+               int sportsmanNeed, sportsman *readSportsmanArr,
+               sportsman **rightSportsmans) {
+
+    if (countAthletes < sportsmanNeed) {
+        printf("Число требуемых атлетов не покрыть имеющимся количеством");
+        exit(1);
+    }
+
+    writeSportsmansToBinFile(fileName, sportsmanArr, countAthletes);
+
+    int rCountAthletes;
+    readSportsmanArr = readSportsmansFromBinFile(fileName, &rCountAthletes);
+    quickSortSportsmans(readSportsmanArr, 0, rCountAthletes - 1);
+
+    int countSkipAthletes = rCountAthletes - sportsmanNeed;
+    *rightSportsmans = readSportsmanArr + countSkipAthletes;
+
+    writeSportsmansToBinFile(fileName, *rightSportsmans, sportsmanNeed);
+}

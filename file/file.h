@@ -11,6 +11,7 @@
 #include "polynom.h"
 #include "math.h"
 #include "vector.h"
+#include "sportsmens.h"
 
 
 FILE* openFile(char *fileName, char *action);
@@ -33,6 +34,10 @@ void writePosFirstNegSec(char *fileName, int *numsArr, size_t size,
 //8
 void changeNotSymmetricMatrixByTransposed(char *fileName, matrix *ms, int nMatrices);
 //9
+void formTeamOfBestSportsmans(char *fileName, sportsman *sportsmanArr, int countAthletes,
+                              int sportsmanNeed, sportsman *readSportsmanArr,
+                              sportsman **rightSportsmans);
+//10
 
 
 
