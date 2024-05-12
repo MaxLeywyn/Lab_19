@@ -252,6 +252,51 @@ void leftOnlyLongestWord(char *rFileName, char *wFileName) {
 }
 
 
+void leftPolynomsWhitNoXRoot(char *fileName, int *powers, double *coefficients,
+                             int *monQuantity, int polQuantity, int x, int *result){
+    writePolyToFile(fileName, powers, coefficients, monQuantity, polQuantity);
+
+    Polynom *ps = readPolyFromFile(fileName);
+
+    *result = sortedPoly(ps, x, polQuantity);
+
+    savePolyResult(fileName, ps, polQuantity);
+}
+
+void wNumsToBinFile(char *fileName, int numsArray[], size_t sizeArray){
+    FILE *file = openFile(fileName, "wb");
+
+    fwrite(numsArray, sizeof(int), sizeArray, file);
+    fclose(file);
+}
+
+
+void rFilterAndWriteNumsFromBinFile(char *fileName,
+                                    vector *positive,
+                                    vector *negative){
+    FILE *file = openFile(fileName, "rb");
+
+    size_t indPositive = 0;
+    size_t indNegative = 0;
+
+    int num;
+    while (fread(&num, sizeof(int), 1, file) == 1){
+        if (num > 0){
+            pushBack(positive, num);
+        } else{
+            pushBack(negative, num);
+        }
+    }
+
+    fclose(file);
+
+    wNumsToBinFile(fileName, positive->data, indPositive);
+    wNumsToBinFile(fileName, negative->data, indNegative);
+
+    shrinkToFit(positive);
+    shrinkToFit(negative);
+}
+
 
 
 
