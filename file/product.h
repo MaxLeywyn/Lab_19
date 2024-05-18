@@ -2,7 +2,6 @@
 #define LAB_19_PRODUCT_H
 
 #include <stdio.h>
-#include "file.h"
 
 typedef struct product{
     char* name;

@@ -21,5 +21,7 @@ add_executable(Lab_19 main.c
         file/product.h
         file/product.c
         file_tests/file_tests.h
-        file_tests/file_tests.c)
+        file_tests/file_tests.c
+        lab_20/lab_20.h
+        lab_20/lab_20.c)
 

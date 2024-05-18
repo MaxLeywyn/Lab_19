@@ -1,7 +1,7 @@
 #ifndef LAB_19_SPORTSMAN_H
 #define LAB_19_SPORTSMAN_H
 
-#include "file.h"
+
 
 typedef struct sportsman{
     char *name;

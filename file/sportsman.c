@@ -1,4 +1,5 @@
 #include "sportsman.h"
+#include "file.h"
 
 void swapSportsmans(sportsman *const firstNum, sportsman *const secondNum){
     sportsman temp = *firstNum;

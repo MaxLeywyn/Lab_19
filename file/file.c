@@ -61,13 +61,13 @@ void writeArrayInMatrix(char *fileName, matrix *ms, int nMatrices) {
     fclose(file);
 }
 
-void writeTransposedMatrices(char *fileName, int *matrixCounter) {
+void writeTransposedMatrices(char *rfileName, int *matrixCounter) {
     int counter;
-    matrix *ms = readMatrixFromFile("F:\\Git\\Lab_19\\cmake-build-debug\\data\\f_1.txt", &counter);
+    matrix *ms = readMatrixFromFile(rfileName, &counter);
     for (int i = 0; i < counter; i++) {
         transposeSquareMatrix(&ms[i]);
     }
-    writeArrayInMatrix("F:\\Git\\Lab_19\\cmake-build-debug\\data\\f_2.txt", ms, counter);
+    writeArrayInMatrix(rfileName, ms, counter);
 }
 
 
@@ -263,14 +263,14 @@ void leftPolynomsWhitNoXRoot(char *fileName, int *powers, double *coefficients,
     savePolyResult(fileName, ps, polQuantity);
 }
 
-void wNumsToBinFile(char *fileName, int *numsArr, size_t size) {
+void writeNumsToBinFile(char *fileName, int *numsArr, size_t size) {
     FILE *file = openFile(fileName, "wb");
     fwrite(numsArr, sizeof(int), size, file);
     fclose(file);
 }
 
 
-void rFilterAndWriteNumsToBinFile(char *fileName,
+void readFilterAndWriteNumsToBinFile(char *fileName,
                                   vector *positive,
                                   vector *negative) {
     FILE *file = openFile(fileName, "rb");
@@ -289,8 +289,8 @@ void rFilterAndWriteNumsToBinFile(char *fileName,
 
     fclose(file);
 
-    wNumsToBinFile(fileName, positive->data, indPositive);
-    wNumsToBinFile(fileName, negative->data, indNegative);
+    writeNumsToBinFile(fileName, positive->data, indPositive);
+    writeNumsToBinFile(fileName, negative->data, indNegative);
 
     shrinkToFit(positive);
     shrinkToFit(negative);
@@ -298,9 +298,9 @@ void rFilterAndWriteNumsToBinFile(char *fileName,
 
 void writePosFirstNegSec(char *fileName, int *numsArr, size_t size,
                          vector *positive, vector *negative) {
-    wNumsToBinFile(fileName, numsArr, size);
+    writeNumsToBinFile(fileName, numsArr, size);
 
-    rFilterAndWriteNumsToBinFile(fileName, positive, negative);
+    readFilterAndWriteNumsToBinFile(fileName, positive, negative);
 }
 
 
@@ -384,7 +384,7 @@ void formTeamOfBestSportsmans(char *fileName, sportsman *sportsmanArr, int sport
 }
 
 
-void saveOnlyAvailableProduct(char *fileNameProducts, char *fileNameOrders,
+void saveOnlyAvailableProductsByOrders(char *fileNameProducts, char *fileNameOrders,
                product *productsArr, size_t productsQuantity,
                order *ordersArr, size_t ordersQuantity,
                product **readProductsIndicatorArr){

@@ -268,16 +268,16 @@ void task9_test() {
     int sportsmansQuantity = 4;
     sportsman sportsmansArr[sportsmansQuantity];
 
-    sportsmansArr[0].name = "Leywyn Arthur";
+    sportsmansArr[0].name = "Leywyn Arthur Elvinov";
     sportsmansArr[0].bestResult = 100;
 
-    sportsmansArr[1].name = "Bright Estel";
+    sportsmansArr[1].name = "Bright Estel Eric";
     sportsmansArr[1].bestResult = 150;
 
-    sportsmansArr[2].name = "Chad Kruger";
+    sportsmansArr[2].name = "Kruger Chad Nickolaev";
     sportsmansArr[2].bestResult = 250;
 
-    sportsmansArr[3].name = "Nameless King";
+    sportsmansArr[3].name = "Nameless King Artorias";
     sportsmansArr[3].bestResult = 400;
 
     int sportsmansNeed = 2;
