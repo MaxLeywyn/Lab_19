@@ -37,10 +37,10 @@ int countNear1(matrix m, size_t i_row, size_t i_col) {
     size_t i_c2 = i_col;
 
     if (i_r1 != 0) i_r1--;
-    if (i_r2 != m.nRows-1) i_r2++;
+    if (i_r2 != m.nRows - 1) i_r2++;
 
     if (i_c1 != 0) i_c1--;
-    if (i_c2 != m.nCols-1) i_c2++;
+    if (i_c2 != m.nCols - 1) i_c2++;
 
     for (int i = i_r1; i <= i_r2; i++) {
         for (int j = i_c1; j <= i_c2; j++) {
@@ -55,7 +55,7 @@ int countNear1(matrix m, size_t i_row, size_t i_col) {
 
 void task2(matrix *m) {
     int counter = 0;
-    int tempArr[m->nRows*m->nCols];
+    int tempArr[m->nRows * m->nCols];
     for (int i = 0; i < m->nRows; i++) {
         for (int j = 0; j < m->nCols; j++) {
             int c = countNear1(*m, i, j);
@@ -65,16 +65,64 @@ void task2(matrix *m) {
             } else if (c == 3 && m->values[i][j] == 0) {
                 tempArr[counter] = 1;
             } else {
-                tempArr[counter]=m->values[i][j];
+                tempArr[counter] = m->values[i][j];
             }
             counter++;
         }
     }
     counter = 0;
     for (int i = 0; i < m->nRows; i++) {
-        for (int j = 0; j < m->nCols; j++){
-            m->values[i][j]=tempArr[counter];
+        for (int j = 0; j < m->nCols; j++) {
+            m->values[i][j] = tempArr[counter];
             counter++;
         }
     }
 }
+
+
+void readNearPixels(matrix m, size_t i_row, size_t i_col, int *a, int filterSize) {
+
+    int c = filterSize / 2;
+
+    size_t i_r1 = i_row - c;
+    size_t i_r2 = i_row + c;
+    size_t i_c1 = i_col - c;
+    size_t i_c2 = i_col + c;
+
+    int counter = 0;
+    for (int i = i_r1; i <= i_r2; i++) {
+        for (int j = i_c1; j <= i_c2; j++) {
+            a[counter] = m.values[i][j];
+            counter++;
+        }
+    }
+}
+
+int compare(const void *x1, const void *x2) {
+    return (*(int *) x1 - *(int *) x2);
+}
+
+int countMiddle(int *a, size_t n) {
+    qsort(a, n, sizeof(int), compare);
+    return a[(n / 2) + 1];
+}
+
+void filterFunc(matrix *m, int filterSize) {
+    if (filterSize > m->nCols || filterSize > m->nRows) {
+        printf("Filter size higher then matrix");
+        return;
+    }
+
+    int c = filterSize / 2;
+
+    for (int i_r1 = c; i_r1 <= m->nRows - c - 1; i_r1++) {
+        for (int i_c1 = c; i_c1 <= m->nCols - c - 1; i_c1++) {
+            size_t n = filterSize * filterSize;
+            int a[n];
+            readNearPixels(*m, i_r1, i_c1, a, filterSize);
+            m->values[i_r1][i_c1] = countMiddle(a, n);
+        }
+    }
+
+}
+
