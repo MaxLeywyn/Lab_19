@@ -3,11 +3,13 @@
 
 #include "../file/matrix.h"
 
-void task1(matrix *m, int n, int query[n][4]);
-
 matrix createEmptySquareMatrix(int n);
 
-void incrementMatrixInArea(matrix *m, int *query);
+void task1(matrix *m, int n, int query[n][4]);
+
+void task2(matrix *m);
+
+
 
 
 
