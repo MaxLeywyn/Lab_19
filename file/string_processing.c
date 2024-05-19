@@ -219,7 +219,7 @@ void outputBagReverse(BagOfWords *bag) {
 //8
 char *findLetter(char *begin) {
     char *end = begin;
-    while ((!isalpha(*end)) && *end != '\0') {
+    while ((*end < 'a' && *end > 'z') && *end != '\0') {
         end++;
     }
     return end;

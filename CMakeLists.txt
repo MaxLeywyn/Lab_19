@@ -23,5 +23,7 @@ add_executable(Lab_19 main.c
         file_tests/file_tests.h
         file_tests/file_tests.c
         lab_20/lab_20.h
-        lab_20/lab_20.c)
+        lab_20/lab_20.c
+        lab_20/domen.h
+        lab_20/domen.c)
 

@@ -36,6 +36,8 @@ char *getEndOfString(char *s);
 
 void removeNonLetters(char *s);
 
+char *findLetter(char *begin);
+
 void removeExtraSpaces(char *s);
 
 void sortDigitsToEndWithOriginalOrder(char *s);

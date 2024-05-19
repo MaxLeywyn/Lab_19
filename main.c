@@ -1,24 +1,20 @@
 #include <windows.h>
 #include "lab_20/lab_20.h"
 
+void testFourthTask(){
+    size_t size = 4;
+    domen arr[4] = {{900, "google.mail.com"},
+                       {50, "yahoo.com"},
+                       {1, "intel.mail.com"},
+                       {5, "wiki.org"}};
+    task4(arr, size);
+}
 
 int main() {
 
     SetConsoleOutputCP(CP_UTF8);
 
-    matrix m = createMatrixFromArray((int[]) {
-            2, 1, 6, 9, 16,
-            6, 9, 2, 16, 25,
-            1, 7, 15, 40, 19,
-            12, 9, 30, 3, 1,
-            12, 20, 4, 11, 13,
-    }, 5, 5);
-
-    filterFunc(&m, 5);
-
-    outputMatrix(m);
-
-    freeMemMatrix(&m);
+    testFourthTask();
 
     return 0;
 }

@@ -1,4 +1,6 @@
 #include "lab_20.h"
+#include "../file/file.h"
+
 
 
 void incrementMatrixInArea(matrix *m, int *query) {
@@ -107,7 +109,7 @@ int countMiddle(int *a, size_t n) {
     return a[(n / 2) + 1];
 }
 
-void filterFunc(matrix *m, int filterSize) {
+void task3(matrix *m, int filterSize) {
     if (filterSize > m->nCols || filterSize > m->nRows) {
         printf("Filter size higher then matrix");
         return;
@@ -123,6 +125,31 @@ void filterFunc(matrix *m, int filterSize) {
             m->values[i_r1][i_c1] = countMiddle(a, n);
         }
     }
-
 }
 
+
+void task4(domen *arr, size_t size){
+    int closeInd[size];
+    size_t closeCounter = 0;
+    domen results[MAX_STRING_SIZE];
+    size_t resultSize = 0;
+
+    for (size_t ind = 0; ind < size; ind++){
+        results[resultSize++] = arr[ind];
+    }
+
+    while(closeCounter != size){
+        for (int i = 0; i < size; i++){
+            if (!searchNumInArray(closeInd, closeCounter, i)){
+                char *dotPtr = strchr(arr[i].nameOfSite, '.');
+                if (dotPtr != NULL){
+                    dotPrtIsNotNull(arr, i, dotPtr, results, &resultSize);
+                } else{
+                    closeInd[closeCounter++] = i;
+                }
+            }
+        }
+    }
+
+    outputResultDomains(results, resultSize);
+}
