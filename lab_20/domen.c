@@ -24,8 +24,7 @@ size_t searchDomenInResults(domen *domens, size_t size, char *s){
 
 void dotPrtIsNotNull(domen *arr, size_t i, char *dotPtr, domen *domens, size_t *sizeRes){
     strcpy(arr[i].nameOfSite, dotPtr + 1);
-    size_t pos = searchDomenInResults(domens, *sizeRes,
-                                       arr[i].nameOfSite);
+    size_t pos = searchDomenInResults(domens, *sizeRes,arr[i].nameOfSite);
     if (pos == *sizeRes){
         domens[*sizeRes] = arr[i];
         *sizeRes += 1;

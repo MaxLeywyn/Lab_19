@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include "domen.h"
 
-#define MAX_DOMEN_STRING_SIZE 50
+#define MAX_DOMENS_SIZE 50
 
 matrix createEmptySquareMatrix(int n);
 
@@ -18,5 +18,6 @@ void task3(matrix *m, int filterSize);
 
 void task4(domen *arr, size_t size);
 
+int task5(matrix *m);
 
 #endif //LAB_19_LAB_20_H

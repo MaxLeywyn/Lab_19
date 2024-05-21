@@ -2,7 +2,6 @@
 #include "../file/file.h"
 
 
-
 void incrementMatrixInArea(matrix *m, int *query) {
     for (int i = query[0]; i <= query[2]; i++) {
         for (int j = query[1]; j <= query[3]; j++) {
@@ -128,28 +127,68 @@ void task3(matrix *m, int filterSize) {
 }
 
 
-void task4(domen *arr, size_t size){
+void task4(domen *arr, size_t size) {
     int closeInd[size];
     size_t closeCounter = 0;
-    domen results[MAX_STRING_SIZE];
+    domen domens[MAX_DOMENS_SIZE];
     size_t resultSize = 0;
 
-    for (size_t ind = 0; ind < size; ind++){
-        results[resultSize++] = arr[ind];
+    for (size_t ind = 0; ind < size; ind++) {
+        domens[resultSize++] = arr[ind];
     }
 
-    while(closeCounter != size){
-        for (int i = 0; i < size; i++){
-            if (!searchNumInArray(closeInd, closeCounter, i)){
+    while (closeCounter != size) {
+        for (int i = 0; i < size; i++) {
+            if (!searchNumInArray(closeInd, closeCounter, i)) {
                 char *dotPtr = strchr(arr[i].nameOfSite, '.');
-                if (dotPtr != NULL){
-                    dotPrtIsNotNull(arr, i, dotPtr, results, &resultSize);
-                } else{
+                if (dotPtr != NULL) {
+                    dotPrtIsNotNull(arr, i, dotPtr, domens, &resultSize);
+                } else {
                     closeInd[closeCounter++] = i;
                 }
             }
         }
     }
 
-    outputResultDomains(results, resultSize);
+    outputDomens(domens, resultSize);
+}
+
+
+int isSubMatrix1ByFilter(matrix *m, size_t i_row, size_t i_col, int *filterSize) {
+
+    size_t i_r = i_row + (filterSize[0] - 1);
+    size_t i_c = i_col + (filterSize[1] - 1);
+
+    for (int i = i_row; i <= i_r; i++) {
+        for (int j = i_col; j <= i_c; j++) {
+            if (m->values[i][j] == 0) {
+                return 0;
+            }
+        }
+    }
+
+    return 1;
+}
+
+
+int task5(matrix *m) {
+
+    int counter = 0;
+    int a[2] = {0, 0};
+    for (int i = 1; i <= m->nRows; i++) {
+        for (int j = 1; j <= m->nCols; j++) {
+            int filterSizeI = m->nRows - i;
+            int filterSizeJ = m->nCols - j;
+            a[0] = i;
+            a[1] = j;
+            for (int i_r = 0; i_r <= filterSizeI; i_r++) {
+                for (int i_c = 0; i_c <= filterSizeJ; i_c++) {
+                    if (isSubMatrix1ByFilter(m, i_r, i_c, a)) {
+                        counter++;
+                    }
+                }
+            }
+        }
+    }
+    return counter;
 }

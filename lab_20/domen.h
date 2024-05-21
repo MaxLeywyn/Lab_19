@@ -14,6 +14,6 @@ void dotPrtIsNotNull(domen *arr, size_t i, char *dotPtr,
 
 bool searchNumInArray(int *array, size_t length, int num);
 
-void outputResultDomains(domen *results, size_t size);
+void outputDomens(domen *results, size_t size);
 
 #endif //LAB_19_DOMEN_H
