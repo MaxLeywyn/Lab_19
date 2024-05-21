@@ -130,11 +130,11 @@ void task3(matrix *m, int filterSize) {
 void task4(domen *arr, size_t size) {
     int closeInd[size];
     size_t closeCounter = 0;
-    domen domens[MAX_DOMENS_SIZE];
-    size_t resultSize = 0;
+    domen res[MAX_DOMENS_SIZE];
+    size_t resSize = 0;
 
     for (size_t ind = 0; ind < size; ind++) {
-        domens[resultSize++] = arr[ind];
+        res[resSize++] = arr[ind];
     }
 
     while (closeCounter != size) {
@@ -142,7 +142,7 @@ void task4(domen *arr, size_t size) {
             if (!searchNumInArray(closeInd, closeCounter, i)) {
                 char *dotPtr = strchr(arr[i].nameOfSite, '.');
                 if (dotPtr != NULL) {
-                    dotPrtIsNotNull(arr, i, dotPtr, domens, &resultSize);
+                    dotPrtIsNotNull(arr, i, dotPtr, res, &resSize);
                 } else {
                     closeInd[closeCounter++] = i;
                 }
@@ -150,7 +150,7 @@ void task4(domen *arr, size_t size) {
         }
     }
 
-    outputDomens(domens, resultSize);
+    outputDomens(res, resSize);
 }
 
 
@@ -191,4 +191,27 @@ int task5(matrix *m) {
         }
     }
     return counter;
+}
+
+
+void task6(const char *s, int size, char *res, size_t *resSize){
+    char buffer[10];
+    size_t bufferSize = 0;
+    size_t tempSize = 0;
+
+    char num = '1';
+    for (size_t i = 0; i < size; i++) {
+        buffer[bufferSize++] = num++;
+        if (s[i] == 'I') {
+            while (bufferSize > 0)
+                res[tempSize++] = buffer[--bufferSize];
+        }
+    }
+
+    buffer[bufferSize++] = num;
+    while (bufferSize > 0)
+        res[tempSize++] = buffer[--bufferSize];
+
+    res[tempSize] = '\0';
+    *resSize = tempSize;
 }

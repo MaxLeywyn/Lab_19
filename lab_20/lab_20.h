@@ -20,4 +20,6 @@ void task4(domen *arr, size_t size);
 
 int task5(matrix *m);
 
+void task6(const char *s, int size, char *res, size_t *resSize);
+
 #endif //LAB_19_LAB_20_H
