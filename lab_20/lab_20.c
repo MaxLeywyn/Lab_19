@@ -194,7 +194,7 @@ int task5(matrix *m) {
 }
 
 
-void task6(const char *s, int size, char *res, size_t *resSize){
+void task6(char *s, int size, char *res, size_t *resSize){
     char buffer[10];
     size_t bufferSize = 0;
     size_t tempSize = 0;
@@ -215,3 +215,12 @@ void task6(const char *s, int size, char *res, size_t *resSize){
     res[tempSize] = '\0';
     *resSize = tempSize;
 }
+
+
+void task8(char *s, size_t size, int *indArr, char *res){
+    for (size_t i = 0; i < size; i++){
+        res[i] = s[indArr[i]];
+    }
+    res[size] = '\0';
+}
+
