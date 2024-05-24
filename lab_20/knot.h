@@ -14,9 +14,6 @@ typedef struct knot {
 
 knot *createKnot(int k);
 
-knot *insert(knot *p, int k, bool isLeft);
-
-
 int searchMaxNumIndex(int *a, int start, int end);
 
 void buildKnots(knot *currentKnot, int *a, int start, int end, bool isLeft);

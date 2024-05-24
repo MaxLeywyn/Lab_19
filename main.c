@@ -10,8 +10,15 @@ int main() {
 
     int a[] = {6, 8, 1 ,5, 6};
 
-    task7(a,n);
+    vector v = createVector(n);
 
-    return 0;
+    task9(a,n,6,"F:\\Git\\Lab_19\\cmake-build-debug\\data\\f_9_20.txt",
+          "F:\\Git\\Lab_19\\cmake-build-debug\\data\\f_9.2_2.txt",&v);
+
+    for (int i = 0; i < v.size; ++i) {
+        printf("%d",v.data[i]);
+    }
+
+    deleteVector(&v);
 }
 

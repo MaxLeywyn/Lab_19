@@ -1,5 +1,5 @@
 #include "lab_20.h"
-#include "../file/file.h"
+
 
 
 void incrementMatrixInArea(matrix *m, int *query) {
@@ -194,7 +194,7 @@ int task5(matrix *m) {
 }
 
 
-void task6(char *s, int size, char *res, size_t *resSize){
+void task6(char *s, int size, char *res, size_t *resSize) {
     char buffer[10];
     size_t bufferSize = 0;
     size_t tempSize = 0;
@@ -226,25 +226,53 @@ void task7(int *a, size_t size) {
     knot *root = createKnot(a[i]);
     buildKnots(root, a, 0, i - 1, true);
     buildKnots(root, a, i + 1, size - 1, false);
-    printf("\n");
 
     widthOfFirstBypass(root);
     printf("\n");
 }
 
 
-void task8(char *s, size_t size, int *indArr, char *res){
-    for (size_t i = 0; i < size; i++){
+void task8(char *s, size_t size, int *indArr, char *res) {
+    for (size_t i = 0; i < size; i++) {
         res[i] = s[indArr[i]];
     }
     res[size] = '\0';
 }
 
 
+void printToFileFile(int *a, size_t size, char *fileName) {
+    FILE *file = openFile(fileName, "w");
+
+    for (size_t i = 0; i < size; i++) {
+        fprintf(file, "%d ", a[i]);
+    }
+
+    fclose(file);
+}
+
+void readingNumsFilteringAndWriting(vector *v, char *rFileName, int limiter, char *wFileName) {
+    FILE *rFile = openFile(rFileName, "r");
+    FILE *wFile = openFile(wFileName, "w");
+
+    int num;
+    while (fscanf(rFile, "%d", &num) == 1) {
+        if (num < limiter) {
+            v->data[v->size++] = num;
+            fprintf(wFile, "%d ", num);
+        }
+    }
+
+    fclose(rFile);
+    fclose(wFile);
+}
 
 
 
-
+void task9(int *a, size_t size, int limiter, char *readFileName, char *writeFileName, vector *v) {
+    printToFileFile(a, size, readFileName);
+    readingNumsFilteringAndWriting(v, readFileName, limiter, writeFileName);
+    shrinkToFit(v);
+}
 
 
 

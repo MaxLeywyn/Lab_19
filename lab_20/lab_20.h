@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include "domen.h"
 #include "knot.h"
+#include "../file/file.h"
 
 #define MAX_DOMENS_SIZE 50
 
@@ -26,6 +27,8 @@ void task6(char *s, int size, char *res, size_t *resSize);
 void task7(int *a, size_t size);
 
 void task8(char *s, size_t size, int *indArr, char *res);
+
+void task9(int *a, size_t size, int limiter, char *readFileName, char *writeFileName, vector *v);
 
 
 

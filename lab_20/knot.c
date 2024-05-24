@@ -11,17 +11,6 @@ knot *createKnot(int k) {
 }
 
 
-knot* insert(knot *p, int k, bool isLeft) {
-    knot *newNode = createKnot(k);
-    if (isLeft)
-        p->left = newNode;
-    else
-        p->right = newNode;
-
-    return newNode;
-}
-
-
 int searchMaxNumIndex(int *a, int start, int end) {
     int numTemp = a[start];
     int iTemp = start;
@@ -43,16 +32,16 @@ void buildKnots(knot *currentKnot, int *a, int start, int end, bool isLeft) {
     }
 
     int i_max = searchMaxNumIndex(a, start, end);
-    knot *newNode = createKnot(a[i_max]);
+    knot *newKnot = createKnot(a[i_max]);
 
     if (isLeft) {
-        currentKnot->left = newNode;
+        currentKnot->left = newKnot;
     } else {
-        currentKnot->right = newNode;
+        currentKnot->right = newKnot;
     }
 
-    buildKnots(newNode, a, start, i_max - 1, true);
-    buildKnots(newNode, a, i_max + 1, end, false);
+    buildKnots(newKnot, a, start, i_max - 1, true);
+    buildKnots(newKnot, a, i_max + 1, end, false);
 }
 
 
