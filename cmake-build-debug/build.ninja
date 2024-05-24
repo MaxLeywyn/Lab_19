@@ -127,6 +127,12 @@ build CMakeFiles/Lab_19.dir/lab_20_test/lab_20_test.c.obj: C_COMPILER__Lab_19_un
   OBJECT_DIR = CMakeFiles\Lab_19.dir
   OBJECT_FILE_DIR = CMakeFiles\Lab_19.dir\lab_20_test
 
+build CMakeFiles/Lab_19.dir/lab_20/knot.c.obj: C_COMPILER__Lab_19_unscanned_Debug F$:/Git/Lab_19/lab_20/knot.c || cmake_object_order_depends_target_Lab_19
+  DEP_FILE = CMakeFiles\Lab_19.dir\lab_20\knot.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Lab_19.dir
+  OBJECT_FILE_DIR = CMakeFiles\Lab_19.dir\lab_20
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Lab_19
@@ -135,7 +141,7 @@ build CMakeFiles/Lab_19.dir/lab_20_test/lab_20_test.c.obj: C_COMPILER__Lab_19_un
 #############################################
 # Link the executable Lab_19.exe
 
-build Lab_19.exe: C_EXECUTABLE_LINKER__Lab_19_Debug CMakeFiles/Lab_19.dir/main.c.obj CMakeFiles/Lab_19.dir/file/file.c.obj CMakeFiles/Lab_19.dir/file/matrix.c.obj CMakeFiles/Lab_19.dir/file/string_.c.obj CMakeFiles/Lab_19.dir/file/string_processing.c.obj CMakeFiles/Lab_19.dir/file/polynom.c.obj CMakeFiles/Lab_19.dir/file/vector.c.obj CMakeFiles/Lab_19.dir/file/sportsman.c.obj CMakeFiles/Lab_19.dir/file/product.c.obj CMakeFiles/Lab_19.dir/file_tests/file_tests.c.obj CMakeFiles/Lab_19.dir/lab_20/lab_20.c.obj CMakeFiles/Lab_19.dir/lab_20/domen.c.obj CMakeFiles/Lab_19.dir/lab_20_test/lab_20_test.c.obj
+build Lab_19.exe: C_EXECUTABLE_LINKER__Lab_19_Debug CMakeFiles/Lab_19.dir/main.c.obj CMakeFiles/Lab_19.dir/file/file.c.obj CMakeFiles/Lab_19.dir/file/matrix.c.obj CMakeFiles/Lab_19.dir/file/string_.c.obj CMakeFiles/Lab_19.dir/file/string_processing.c.obj CMakeFiles/Lab_19.dir/file/polynom.c.obj CMakeFiles/Lab_19.dir/file/vector.c.obj CMakeFiles/Lab_19.dir/file/sportsman.c.obj CMakeFiles/Lab_19.dir/file/product.c.obj CMakeFiles/Lab_19.dir/file_tests/file_tests.c.obj CMakeFiles/Lab_19.dir/lab_20/lab_20.c.obj CMakeFiles/Lab_19.dir/lab_20/domen.c.obj CMakeFiles/Lab_19.dir/lab_20_test/lab_20_test.c.obj CMakeFiles/Lab_19.dir/lab_20/knot.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Lab_19.dir

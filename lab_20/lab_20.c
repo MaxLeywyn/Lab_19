@@ -217,10 +217,35 @@ void task6(char *s, int size, char *res, size_t *resSize){
 }
 
 
+void task7(int *a, size_t size) {
+    if (size == 0) {
+        return;
+    }
+
+    int i = searchMaxNumIndex(a, 0, size - 1);
+    knot *root = createKnot(a[i]);
+    buildKnots(root, a, 0, i - 1, true);
+    buildKnots(root, a, i + 1, size - 1, false);
+    printf("\n");
+
+    widthOfFirstBypass(root);
+    printf("\n");
+}
+
+
 void task8(char *s, size_t size, int *indArr, char *res){
     for (size_t i = 0; i < size; i++){
         res[i] = s[indArr[i]];
     }
     res[size] = '\0';
 }
+
+
+
+
+
+
+
+
+
 

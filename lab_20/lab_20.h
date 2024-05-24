@@ -5,6 +5,7 @@
 #include "../file/matrix.h"
 #include <stdlib.h>
 #include "domen.h"
+#include "knot.h"
 
 #define MAX_DOMENS_SIZE 50
 
@@ -22,8 +23,10 @@ int task5(matrix *m);
 
 void task6(char *s, int size, char *res, size_t *resSize);
 
-
+void task7(int *a, size_t size);
 
 void task8(char *s, size_t size, int *indArr, char *res);
+
+
 
 #endif //LAB_19_LAB_20_H
