@@ -1,4 +1,7 @@
 #include "lab_20.h"
+#include <signal.h>
+#include <unistd.h>
+#include <conio.h>
 
 
 
@@ -240,7 +243,7 @@ void task8(char *s, size_t size, int *indArr, char *res) {
 }
 
 
-void printToFileFile(int *a, size_t size, char *fileName) {
+void printNumsToFile(int *a, size_t size, char *fileName) {
     FILE *file = openFile(fileName, "w");
 
     for (size_t i = 0; i < size; i++) {
@@ -269,11 +272,48 @@ void readingNumsFilteringAndWriting(vector *v, char *rFileName, int limiter, cha
 
 
 void task9(int *a, size_t size, int limiter, char *readFileName, char *writeFileName, vector *v) {
-    printToFileFile(a, size, readFileName);
+    printNumsToFile(a, size, readFileName);
     readingNumsFilteringAndWriting(v, readFileName, limiter, writeFileName);
     shrinkToFit(v);
 }
 
+
+void printTextToFile(char *fileName, char *string){
+    FILE *file = openFile(fileName, "w");
+    fprintf(file, "%s", string);
+    fclose(file);
+}
+
+
+void signalHandler(int signum) {
+    if (signum == SIGINT) {
+        printf("\nCtrl + C pressed. Exiting...\n");
+        exit(0);
+    }
+}
+
+
+void task10(char *fileName, size_t strSize, char *text) {
+    printTextToFile(fileName, text);
+
+    FILE *file = openFile(fileName, "r");
+
+    char strBuffer[STRING_BUFFER_SIZE];
+    size_t count = 0;
+
+    signal(SIGINT, signalHandler);
+
+    while (fgets(strBuffer, STRING_BUFFER_SIZE, file) != NULL) {
+        printf("%s", strBuffer);
+        count++;
+
+        if (count == strSize){
+            printf("Press Ctrl + C\n");
+            pause();
+        }
+    }
+    fclose(file);
+}
 
 
 
