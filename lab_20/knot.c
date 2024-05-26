@@ -2,7 +2,7 @@
 
 
 knot *createKnot(int k) {
-    knot *newNode = (knot*) malloc(sizeof(knot));
+    knot *newNode = (knot *) malloc(sizeof(knot));
     newNode->root = k;
     newNode->left = NULL;
     newNode->right = NULL;
@@ -45,7 +45,7 @@ void buildKnots(knot *currentKnot, int *a, int start, int end, bool isLeft) {
 }
 
 
-void widthOfFirstBypass(knot *root) {
+void widthOfBypass(knot *root) {
     if (root == NULL) {
         return;
     }

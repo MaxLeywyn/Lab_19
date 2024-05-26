@@ -4,12 +4,9 @@
 #include <conio.h>
 
 
-
 #define N 300000
 #define Q 5
 #define LEN 1000000
-
-
 
 
 void incrementMatrixInArea(matrix *m, int *query) {
@@ -30,7 +27,6 @@ matrix createEmptySquareMatrix(int n) {
     return m;
 }
 
-//не забывать об очистке
 void task1(matrix *m, int n, int query[n][4]) {
     for (int i = 0; i < n; i++) {
         incrementMatrixInArea(m, query[i]);
@@ -70,7 +66,6 @@ void task2(matrix *m) {
     for (int i = 0; i < m->nRows; i++) {
         for (int j = 0; j < m->nCols; j++) {
             int c = countNear1(*m, i, j);
-            printf("%d\n", c);
             if ((c < 2 || c > 3) && m->values[i][j] == 1) {
                 tempArr[counter] = 0;
             } else if (c == 3 && m->values[i][j] == 0) {
@@ -143,8 +138,8 @@ void task4(domen *arr, size_t size) {
     domen res[MAX_DOMENS_SIZE];
     size_t resSize = 0;
 
-    for (size_t ind = 0; ind < size; ind++) {
-        res[resSize++] = arr[ind];
+    for (int i = 0; i < size; i++) {
+        res[resSize++] = arr[i];
     }
 
     while (closeCounter != size) {
@@ -206,11 +201,11 @@ int task5(matrix *m) {
 
 void task6(char *s, int size, char *res, size_t *resSize) {
     char buffer[10];
-    size_t bufferSize = 0;
-    size_t tempSize = 0;
+    int bufferSize = 0;
+    int tempSize = 0;
 
     char num = '1';
-    for (size_t i = 0; i < size; i++) {
+    for (int i = 0; i < size; i++) {
         buffer[bufferSize++] = num++;
         if (s[i] == 'I') {
             while (bufferSize > 0)
@@ -237,13 +232,13 @@ void task7(int *a, size_t size) {
     buildKnots(root, a, 0, i - 1, true);
     buildKnots(root, a, i + 1, size - 1, false);
 
-    widthOfFirstBypass(root);
+    widthOfBypass(root);
     printf("\n");
 }
 
 
 void task8(char *s, size_t size, int *indArr, char *res) {
-    for (size_t i = 0; i < size; i++) {
+    for (int i = 0; i < size; i++) {
         res[i] = s[indArr[i]];
     }
     res[size] = '\0';
@@ -253,7 +248,7 @@ void task8(char *s, size_t size, int *indArr, char *res) {
 void printNumsToFile(int *a, size_t size, char *fileName) {
     FILE *file = openFile(fileName, "w");
 
-    for (size_t i = 0; i < size; i++) {
+    for (int i = 0; i < size; i++) {
         fprintf(file, "%d ", a[i]);
     }
 
@@ -277,7 +272,6 @@ void readingNumsFilteringAndWriting(vector *v, char *rFileName, int limiter, cha
 }
 
 
-
 void task9(int *a, size_t size, int limiter, char *readFileName, char *writeFileName, vector *v) {
     printNumsToFile(a, size, readFileName);
     readingNumsFilteringAndWriting(v, readFileName, limiter, writeFileName);
@@ -285,7 +279,7 @@ void task9(int *a, size_t size, int limiter, char *readFileName, char *writeFile
 }
 
 
-void printTextToFile(char *fileName, char *string){
+void printTextToFile(char *fileName, char *string) {
     FILE *file = openFile(fileName, "w");
     fprintf(file, "%s", string);
     fclose(file);
@@ -314,7 +308,7 @@ void task10(char *fileName, size_t strSize, char *text) {
         printf("%s", strBuffer);
         count++;
 
-        if (count == strSize){
+        if (count == strSize) {
             printf("Enter: Ctrl + C\n");
 
         }
@@ -323,14 +317,13 @@ void task10(char *fileName, size_t strSize, char *text) {
 }
 
 
-
 char strArr[N][Q];
 int n, q;
 char pi[LEN];
 
-int binarySearchInWord(char* word) {
+int binarySearchInWord(char *word) {
     int left = 0;
-    int right = n-1;
+    int right = n - 1;
     int middle;
     while (left <= right) {
         middle = (left + right) / 2;
@@ -355,7 +348,7 @@ void task11() {
         int ki;
         scanf("%d %s", &ki, pi);
         int start = binarySearchInWord(pi);
-        if (strncmp(strArr[start], pi, strlen(pi)) == 0 && (start + ki) < 11) {
+        if (strncmp(strArr[start], pi, strlen(pi)) == 0 && (start + ki) < n) {
             printf("%d\n", start + ki);
         } else {
             printf("-1\n");

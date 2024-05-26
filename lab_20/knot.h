@@ -18,6 +18,6 @@ int searchMaxNumIndex(int *a, int start, int end);
 
 void buildKnots(knot *currentKnot, int *a, int start, int end, bool isLeft);
 
-void widthOfFirstBypass(knot *root);
+void widthOfBypass(knot *root);
 
 #endif //LAB_19_KNOT_H
