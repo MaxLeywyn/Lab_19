@@ -5,6 +5,13 @@
 
 
 
+#define N 300000
+#define Q 5
+#define LEN 1000000
+
+
+
+
 void incrementMatrixInArea(matrix *m, int *query) {
     for (int i = query[0]; i <= query[2]; i++) {
         for (int j = query[1]; j <= query[3]; j++) {
@@ -287,7 +294,7 @@ void printTextToFile(char *fileName, char *string){
 
 void signalHandler(int signum) {
     if (signum == SIGINT) {
-        printf("\nCtrl + C pressed. Exiting...\n");
+        printf("\nCombination pressed.\n");
         exit(0);
     }
 }
@@ -308,8 +315,8 @@ void task10(char *fileName, size_t strSize, char *text) {
         count++;
 
         if (count == strSize){
-            printf("Press Ctrl + C\n");
-            pause();
+            printf("Enter: Ctrl + C\n");
+
         }
     }
     fclose(file);
@@ -317,3 +324,41 @@ void task10(char *fileName, size_t strSize, char *text) {
 
 
 
+char strArr[N][Q];
+int n, q;
+char pi[LEN];
+
+int binarySearchInWord(char* word) {
+    int left = 0;
+    int right = n-1;
+    int middle;
+    while (left <= right) {
+        middle = (left + right) / 2;
+        if (strncmp(strArr[middle], word, strlen(word)) < 0) {
+            left = middle + 1;
+        } else {
+            right = middle - 1;
+        }
+    }
+    return right + 1;
+}
+
+
+void task11() {
+    scanf("%d %d", &n, &q);
+
+    for (int i = 0; i < n; i++) {
+        scanf("%s", strArr[i]);
+    }
+
+    for (int i = 0; i < q; i++) {
+        int ki;
+        scanf("%d %s", &ki, pi);
+        int start = binarySearchInWord(pi);
+        if (strncmp(strArr[start], pi, strlen(pi)) == 0 && (start + ki) < 11) {
+            printf("%d\n", start + ki);
+        } else {
+            printf("-1\n");
+        }
+    }
+}

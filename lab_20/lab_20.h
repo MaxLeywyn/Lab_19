@@ -36,6 +36,6 @@ void task9(int *a, size_t size, int limiter, char *readFileName, char *writeFile
 
 void task10(char *fileName, size_t strSize, char *text);
 
-
+void task11();
 
 #endif //LAB_19_LAB_20_H
